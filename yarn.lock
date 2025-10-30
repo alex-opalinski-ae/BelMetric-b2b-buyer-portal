@@ -1241,10 +1241,10 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.27.1"
 
-"@bigcommerce/eslint-config@^2.11.0":
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/@bigcommerce/eslint-config/-/eslint-config-2.11.0.tgz#71459b8c444d6e45f6c923cc5677b35091f65216"
-  integrity sha512-r2fWFFmb4UTUEIgI50iKqrNg9Y9xvFepWhOYP/wXNofAyb/+MiH8pHb7glxZFphEtTWnb5hI7K9gCvCrXPAOcQ==
+"@bigcommerce/eslint-config@^2.12.0":
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/@bigcommerce/eslint-config/-/eslint-config-2.12.0.tgz#5fc6d3ef99801c938dabdae6c0e5bc9495273a6a"
+  integrity sha512-ehB8UcLuBNU5Ngq5npSOJDKj2bJhZyfV8KcDJdygfEwq2bVapX5EXK87dlYFVapVpEKvvqKBh0nI8f1AB/W8lg==
   dependencies:
     "@bigcommerce/eslint-plugin" "^1.4.0"
     "@rushstack/eslint-patch" "^1.10.5"
