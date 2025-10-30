@@ -51,6 +51,7 @@ const {
   accountSettingPermissions,
   companyHierarchyPermissions,
   quoteDetailPermissions,
+  taxExemptionPermissions,
 } = legacyPermissions;
 
 const {
@@ -237,6 +238,16 @@ export const routeList: (BuyerPortalRoute | RouteItem)[] = [
     permissionCodes: quoteDetailPermissionCodes,
     isTokenLogin: false,
     idLang: 'global.navMenu.quoteDetail',
+  },
+  {
+    path: '/tax-exemption',
+    name: 'Tax Exemption',
+    wsKey: 'taxExemption',
+    isMenuItem: true,
+    configKey: 'taxExemption',
+    permissions: taxExemptionPermissions,
+    isTokenLogin: true,
+    idLang: 'global.navMenu.taxExemption',
   },
 ];
 

@@ -94,6 +94,16 @@ const legacyPermissions = {
     CustomerRole.B2C,
     CustomerRole.SUPER_ADMIN_BEFORE_AGENCY,
   ],
+  taxExemptionPermissions: [
+    CustomerRole.SUPER_ADMIN,
+    CustomerRole.SUPER_ADMIN_BEFORE_AGENCY,
+    CustomerRole.ADMIN,
+    CustomerRole.SENIOR_BUYER,
+    CustomerRole.JUNIOR_BUYER,
+    CustomerRole.CUSTOM_ROLE,
+    CustomerRole.B2C,
+    CustomerRole.GUEST,
+  ],
   companyHierarchyPermissions: [
     CustomerRole.ADMIN,
     CustomerRole.SENIOR_BUYER,

@@ -242,9 +242,11 @@ export default function B3Nav({ closeSidebar }: B3NavProps) {
           );
         }
         return (
-          <ListItem key={item.path} disablePadding>
+          <ListItem key={item.path} disablePadding className={item.idLang.replaceAll('.','-')}>
             <ListItemButton onClick={() => handleClick(item)} selected={activePath(item.path)}>
-              <ListItemText primary={b3Lang(item.idLang)} />
+              <ListItemText
+                primary={b3Lang(item.idLang)}
+              />
             </ListItemButton>
           </ListItem>
         );
