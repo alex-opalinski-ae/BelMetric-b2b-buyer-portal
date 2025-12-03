@@ -52,7 +52,7 @@ stages:
 
           - powershell: |
               Write-Host "Linking project..."
-              pnpm dlx vercel link --yes --scope=sensing-technology-group --project=hengstler-sandbox --token=$env:VERCEL_TOKEN
+              pnpm dlx vercel link --yes --scope=americaneagle-sandbox --project=belmetric-b2b-buyer-portal-test --token=$env:VERCEL_TOKEN
               Write-Host "Deploying to Vercel..."
               pnpm dlx vercel --prod --token=$env:VERCEL_TOKEN
             displayName: "Deploy to Vercel (Production)"
