@@ -7,7 +7,7 @@ pool:
   name: IDev
 
 variables:
-  NODE_VERSION: "20.18.1"
+  NODE_VERSION: "22.16.0"
   PNPM_VERSION: "9.15.0"
   pnpm_store_path: $(Pipeline.Workspace)/.pnpm-store
 
