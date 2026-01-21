@@ -1,0 +1,62 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  name: IDev
+
+variables:
+  NODE_VERSION: "22.16.0"
+  PNPM_VERSION: "9.15.0"
+  pnpm_store_path: $(Pipeline.Workspace)/.pnpm-store
+
+stages:
+  - stage: DeployProduction
+    displayName: "Deploy to Production"
+    jobs:
+      - job: DeployProductionJob
+        displayName: "Deploy to Production"
+        steps:
+          - checkout: self
+            persistCredentials: true
+            submodules: true
+
+          - task: NodeTool@0
+            displayName: "Install Node.js"
+            inputs:
+              versionSpec: $(NODE_VERSION)
+
+          # Create directory for pnpm store if it doesn't exist
+          - powershell: |
+              if (!(Test-Path "$(pnpm_store_path)")) {
+                New-Item -ItemType Directory -Force -Path "$(pnpm_store_path)"
+              }
+            displayName: "Ensure pnpm store directory exists"
+
+          - script: |
+              npm install --global corepack@latest
+              corepack enable
+              corepack prepare pnpm@$(PNPM_VERSION) --activate
+              pnpm config set store-dir $(pnpm_store_path)
+            displayName: "Setup pnpm"
+
+          - powershell: |
+              corepack enable
+              corepack prepare yarn@1.22.22 --activate
+              $env:VITE_IS_LOCAL_ENVIRONMENT="FALSE"
+              $env:VITE_ASSETS_ABSOLUTE_PATH="https://belmetric-b2b-buyer-portal-test.vercel.app/"
+              yarn install
+              yarn build
+            displayName: "Build B2B"
+
+          - powershell: |
+              Write-Host "Linking project..."
+              pnpm dlx vercel link --yes --scope=americaneagle-sandbox --project=belmetric-b2b-buyer-portal-test --token=$env:VERCEL_TOKEN
+              Write-Host "Deploying to Vercel..."
+              pnpm dlx vercel --prod --token=$env:VERCEL_TOKEN
+            displayName: "Deploy to Vercel (Production)"
+            env:
+              VERCEL_TOKEN: $(VERCEL_TOKEN)
+              VERCEL_ORG_ID: team_EVCH5WxUQujClg3PcBuUkd2a
+              VERCEL_PROJECT_ID: prj_54D5X2ubsi1SYE84svVMjFEjVIZh
